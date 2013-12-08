@@ -1,15 +1,19 @@
-The content of this repository is entirely authored by Michael L. Tornay.
-
 These C# .net classes are designed to extract unoccupied space from groups of closed pairs within a data feed.
 
 Given a group of closed pairs, where each pair of the group comprises the following values:
+
 fromInt  int64 
+
 toInt int64
+
 GivenID int  --simply a row identifier
+
 GroupID -- a means of identify which group within a single stream the given item belongs to.
 
-as long as the fromInt is always a smaller value then the toInt the pairs are considered closed.  
+as long as the fromInt is always a smaller value than the toInt the pairs are considered closed.  
+
 The GivenID is actually cursory and is intended to represent a unique identifier.
+
 The GroupID identifies which "universe" the pair actually belongs to.  Its purpose is to keep the solution 
 scaleable, so that pairs that belong to different groups can be part of the same feed.
 
@@ -18,11 +22,15 @@ The pairs within a group can demonstrate the following patterns
 |------------|  |----------|  two pairs with a gap  e.g. (1,5) (7,13)
 
 |---------|  overlap  (1,4)   
+
         |-------|  (3,7)
 
 and most importantly enclosure
+
 |------------------------------|   (1,16)
+
    |--------|  |--------| (2,5)  (6,10)
+
 
 In these examples they are graphically represented in order, but do not need to be for purposes of data exchange.
 The "span" of a group is determined by the left most value  (lowest fromInt) of any pair in the group, in conjunction 
@@ -39,6 +47,8 @@ and the (6,10) is occupied by the (1,16) and does not count as a gap.
 These classes present two algorithms to address this, both with O(Nlog(N)) runtime.
 One creates a derived group of pairs that represent the inclusive space unoccupied by any pair in a group, 
 the other the fusion, so that enclosed pairs are nihilated.
+
+
 
 
 

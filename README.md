@@ -46,7 +46,7 @@ and the (6,10) is occupied by the (1,16) and does not count as a gap.
 
 These classes present two algorithms to address this, both with O(Nlog(N)) runtime.
 One creates a derived group of pairs that represent the inclusive space unoccupied by any pair in a group, 
-the other the fusion, so that enclosed pairs are annulled.
+the other the fusion, so that enclosed pairs as well as the  overlapped areas are annulled.
 
 
 

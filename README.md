@@ -8,7 +8,7 @@ toInt int64
 
 GivenID int  --simply a row identifier
 
-GroupID -- a means of identify which group within a single stream the given item belongs to.
+GroupID -- a means to identify which group within a single stream the given item belongs to.
 
 As long as the fromInt is always a smaller value than the toInt the pairs are considered closed.  
 

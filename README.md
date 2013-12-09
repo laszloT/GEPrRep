@@ -10,7 +10,7 @@ GivenID int  --simply a row identifier
 
 GroupID -- a means of identify which group within a single stream the given item belongs to.
 
-as long as the fromInt is always a smaller value than the toInt the pairs are considered closed.  
+As long as the fromInt is always a smaller value than the toInt the pairs are considered closed.  
 
 The GivenID is actually cursory and is intended to represent a unique identifier.
 

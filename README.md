@@ -25,7 +25,7 @@ The pairs within a group can demonstrate the following patterns
 
         |-------|  (3,7)
 
-and most importantly enclosure
+and most importantly enclosure (one pair starts before but ends after one or more others)
 
 |------------------------------|   (1,16)
 

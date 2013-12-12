@@ -22,6 +22,7 @@ The pairs within a group can demonstrate the following patterns
 |------------|  |----------|  two pairs with a gap  e.g. (1,5) (7,13)
 
 |---------|  overlap  (1,4)
+ 
        |-------| (3,7)
 
 and most importantly enclosure (one pair starts before but ends after one or more others)

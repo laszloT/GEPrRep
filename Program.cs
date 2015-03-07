@@ -53,7 +53,7 @@ namespace GEPr
                 System.Console.WriteLine(curDR.ToString());
             
 
-            //can't even  remember what the chart is for
+            //the chart is untested
             /*System.Console.WriteLine("Chart");
             IntPairTransform Chart = new IntPairTransform(DRTree);
             allDR = from dr in Chart.GEPrTree.ToList<IntPair>() select dr;

@@ -275,13 +275,13 @@ namespace GEPrLib
 
             Tree<IntPair> rIPTree = null;
             IntPair GEPrIP = null;
-            Dictionary<int, IntPair> GEPrDic = new Dictionary<int, IntPair>();
+            Dictionary<int, IntPair> GEPrDict = new Dictionary<int, IntPair>();
             foreach (var curIP in allIP)
             {
-                if (!GEPrDic.ContainsKey(curIP.GroupId))
-                    GEPrDic.Add(curIP.GroupId, curIP);
+                if (!GEPrDict.ContainsKey(curIP.GroupId))
+                    GEPrDict.Add(curIP.GroupId, curIP);
                 
-                GEPrIP = GEPrDic[curIP.GroupId];
+                GEPrIP = GEPrDict[curIP.GroupId];
 
                 if (GEPrIP.ToInt.CompareTo(curIP.FromInt) == -1)
                 {
@@ -297,7 +297,7 @@ namespace GEPrLib
                 }
 
                 if (curIP.ToInt.CompareTo(GEPrIP.ToInt) == 1)  //This condition establishes if the current record will be saved as the next GEPR
-                    GEPrDic[curIP.GroupId] = curIP;  //retained for next it
+                    GEPrDict[curIP.GroupId] = curIP;  //retained for next it
             }
             return rIPTree;
         }
@@ -315,20 +315,20 @@ namespace GEPrLib
 
             Tree<IntPair> rDRTree = null;
             IntPair GEPrIP = null;
-            Dictionary<int, IntPair> GEPrDic = new Dictionary<int, IntPair>();
+            Dictionary<int, IntPair> GEPrDict = new Dictionary<int, IntPair>();
             IntPair EarliestFromInt = null;
-            Dictionary<int, IntPair> EarliestFromDic = new Dictionary<int, IntPair>();
+            Dictionary<int, IntPair> EarliestFromDict = new Dictionary<int, IntPair>();
 
             //do the traversal
             foreach (var curIP in allIP)
             {
-                if (!GEPrDic.ContainsKey(curIP.GroupId))
-                    GEPrDic.Add(curIP.GroupId, curIP);
-                GEPrIP = GEPrDic[curIP.GroupId];
+                if (!GEPrDict.ContainsKey(curIP.GroupId))
+                    GEPrDict.Add(curIP.GroupId, curIP);
+                GEPrIP = GEPrDict[curIP.GroupId];
 
-                if (!EarliestFromDic.ContainsKey(curIP.GroupId))
-                    EarliestFromDic.Add(curIP.GroupId, curIP);
-                EarliestFromInt = EarliestFromDic[curIP.GroupId];
+                if (!EarliestFromDict.ContainsKey(curIP.GroupId))
+                    EarliestFromDict.Add(curIP.GroupId, curIP);
+                EarliestFromInt = EarliestFromDict[curIP.GroupId];
 
                 if (GEPrIP.ToInt.CompareTo(curIP.FromInt) == -1)  //not the first anymore
                 {
@@ -342,17 +342,17 @@ namespace GEPrLib
                         rDRTree.Insert(new IntPair(EarliestFromInt.FromInt, GEPrIP.ToInt, 
                             EarliestFromInt.GivenId, GEPrIP.GivenId, EarliestFromInt.GroupId));
                     
-                    EarliestFromDic[curIP.GroupId] = curIP;
+                    EarliestFromDict[curIP.GroupId] = curIP;
                 }
 
                 //This condition establishes wether or not to store the current record as the new GEPR for next time
                 if (curIP.ToInt.CompareTo(GEPrIP.ToInt) == 1)  //This condition establishes if the current record will be saved as the next GEPR
-                    GEPrDic[curIP.GroupId] = curIP;  //retained for next it
+                    GEPrDict[curIP.GroupId] = curIP;  //retained for next it
             }
 
             //The final records do not process, but because they are in the dictionaries
             //process them now
-            var allIP2 = from ip in EarliestFromDic select ip;
+            var allIP2 = from ip in EarliestFromDict select ip;
             foreach (var curip in allIP2)
                 rDRTree.Insert(new IntPair(curip.Value.FromInt, GEPrDic[curip.Value.GroupId].ToInt, 
                     curip.Value.GivenId, curip.Value.GroupId));
